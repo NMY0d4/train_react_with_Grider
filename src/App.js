@@ -1,12 +1,21 @@
-import React from 'react';
-const handleClick = () => {
-  console.log('Button was clicked!');
-};
+import { useState } from 'react';
+
+function getRandomAnimal() {
+  const animals = ['bird', 'cat', 'cow', 'dog', 'gator', 'horse'];
+
+  return animals[Math.floor(Math.random() * animals.length)];
+}
 
 function App() {
+  const [animals, setAnimals] = useState([]);
+  const handleClick = () => {
+    setAnimals([...animals, getRandomAnimal()]);
+  };
+
   return (
     <div>
       <button onClick={handleClick}>Add Animal</button>
+      <div>{animals}</div>
     </div>
   );
 }
