@@ -20,7 +20,9 @@ function Animals() {
 
   return (
     <div className='animals'>
-      <button onClick={handleClick}>Add Animal</button>
+      <button className='animal-btn' onClick={handleClick}>
+        Add Animal
+      </button>
       <div className='animal-list'>{renderedAnimals}</div>
     </div>
   );
