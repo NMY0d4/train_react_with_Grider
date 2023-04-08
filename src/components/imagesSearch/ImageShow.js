@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function ImageShow() {
-  return (
-    <div>ImageShow</div>
-  )
+  return <div>ImageShow</div>;
 }
 
-export default ImageShow
+export default ImageShow;
