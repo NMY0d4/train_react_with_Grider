@@ -4,8 +4,7 @@ const BookCreate = ({ onCreate }) => {
   const [title, setTitle] = useState('');
 
   const handleChange = (e) => {
-    setTitle(e.target.value);
-    console.log(title);
+    setTitle(e.target.value);    
   };
 
   const onSubmitHandler = (e) => {
