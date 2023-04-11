@@ -42,13 +42,16 @@ function Provider({ children }) {
   };
 
   const value = {
-    fetchBooks, books, deleteBookById, editBookById, createBook, setBooks
-  }
+    fetchBooks,
+    books,
+    deleteBookById,
+    editBookById,
+    createBook,
+    setBooks,
+  };
 
   return (
-    <BooksContext.Provider value={value}>
-      {children}
-    </BooksContext.Provider>
+    <BooksContext.Provider value={value}>{children}</BooksContext.Provider>
   );
 }
 
