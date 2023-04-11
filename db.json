@@ -1,19 +1,19 @@
 {
   "books": [
     {
-      "title": "batman",
+      "title": "L'art et les ponts.",
       "id": 1
     },
     {
-      "title": "Batman",
+      "title": "S'organiser aujourd'hui...",
       "id": 2
     },
     {
-      "title": "batman",
+      "title": "Les cascades",
       "id": 3
     },
     {
-      "title": "Test",
+      "title": "Être aux fraises!",
       "id": 4
     }
   ]
