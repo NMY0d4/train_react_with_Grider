@@ -3,7 +3,7 @@ import { createContext, useState, useCallback } from 'react';
 
 const BooksContext = createContext();
 
-function Provider({ children }) {
+function BooksProvider({ children }) {
   const [books, setBooks] = useState([]);
 
   // !!! useCallback encapsule fetchBooks to avoid endless rerender in useEffect function !!!
@@ -57,5 +57,5 @@ function Provider({ children }) {
   );
 }
 
-export { Provider };
+export { BooksProvider };
 export default BooksContext;
