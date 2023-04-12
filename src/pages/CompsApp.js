@@ -4,21 +4,21 @@ const CompsApp = () => {
   return (
     <div>
       <div>
-        <Button success primary>
+        <Button success rounded outline>
           Click me!
         </Button>
       </div>
       <div>
-        <Button>Buy Now!</Button>
+        <Button danger outline>Buy Now!</Button>
       </div>
       <div>
-        <Button>See Deal!</Button>
+        <Button warning>See Deal!</Button>
       </div>
       <div>
-        <Button>Hide Ads!</Button>
+        <Button secondary outline>Hide Ads!</Button>
       </div>
       <div>
-        <Button>Something</Button>
+        <Button primary rounded>Something</Button>
       </div>
     </div>
   );
