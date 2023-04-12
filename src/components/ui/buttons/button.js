@@ -9,33 +9,42 @@ function Button({
   danger,
   outline,
   rounded,
+  ...rest
 }) {
-  const classes = classNames('flex items-center px-3 py-1.5 border', {
-    'border-sky-500': primary,
-    'border-gray-600': secondary,
-    'border-green-500': success,
-    'border-yellow-400': warning,
-    'border-red-500': danger,
+  const classes = classNames(
+    rest.className,
+    'flex items-center px-3 py-1.5 border',
+    {
+      'border-sky-500': primary,
+      'border-gray-600': secondary,
+      'border-green-500': success,
+      'border-yellow-400': warning,
+      'border-red-500': danger,
 
-    'bg-sky-500': primary && !outline,
-    'bg-gray-600': secondary && !outline,
-    'bg-green-500': success && !outline,
-    'bg-yellow-400': warning && !outline,
-    'bg-red-500': danger && !outline,
-    'bg-white': outline,
+      'bg-sky-500': primary && !outline,
+      'bg-gray-600': secondary && !outline,
+      'bg-green-500': success && !outline,
+      'bg-yellow-400': warning && !outline,
+      'bg-red-500': danger && !outline,
+      'bg-white': outline,
 
-    'text-white':
-      !outline && (primary || secondary || success || warning || danger),
-    'text-sky-500': outline && primary,
-    'text-gray-600': outline && secondary,
-    'text-green-500': outline && success,
-    'text-yellow-400': outline && warning,
-    'text-red-500': outline && danger,
+      'text-white':
+        !outline && (primary || secondary || success || warning || danger),
+      'text-sky-500': outline && primary,
+      'text-gray-600': outline && secondary,
+      'text-green-500': outline && success,
+      'text-yellow-400': outline && warning,
+      'text-red-500': outline && danger,
 
-    'rounded-full': rounded,
-  });
+      'rounded-full': rounded,
+    }
+  );
 
-  return <button className={classes}>{children}</button>;
+  return (
+    <button {...rest} className={classes}>
+      {children}
+    </button>
+  );
 }
 
 Button.propTypes = {
