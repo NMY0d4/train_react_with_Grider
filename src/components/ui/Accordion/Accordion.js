@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { GoChevronDown, GoChevronLeft } from 'react-icons/go';
 
 function Accordion({ items }) {
-  const [expandedIndex, setExpandedIndex] = useState(0);
+  const [expandedIndex, setExpandedIndex] = useState(-1);
 
   const handleClick = (i) => {
-    setExpandedIndex(i);
+    expandedIndex === i ? setExpandedIndex(-1) : setExpandedIndex(i);
   };
 
   const renderedItems = items.map((item, index) => {
@@ -18,9 +18,9 @@ function Accordion({ items }) {
     );
 
     return (
-      <div className='' key={item.id}>
+      <div key={item.id}>
         <div
-          className='flex justify-between p-3 -bg-gray-50 border-b items-center cursor-pointer'
+          className='flex justify-between p-3 -bg-gray-50 border-b items-center cursor-pointer noselect'
           onClick={() => handleClick(index)}
         >
           {item.label}
