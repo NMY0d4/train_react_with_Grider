@@ -1,7 +1,7 @@
 import { GoBell, GoCloudDownload, GoDatabase } from 'react-icons/go';
 import Button from '../components/ui/buttons/button';
 
-const CompsApp = () => {
+const ButtonPage = () => {
   return (
     <div>
       <div>
@@ -40,4 +40,4 @@ const CompsApp = () => {
   );
 };
 
-export default CompsApp;
+export default ButtonPage;
