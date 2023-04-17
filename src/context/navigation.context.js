@@ -1,12 +1,29 @@
-import { createContext } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 const NavigationContext = createContext();
 
 function NavigationProvider({ children }) {
-  const value = {};
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  
+  useEffect(() => {
+    const handler = () => {
+      setCurrentPath(window.location.pathname);
+    };
+    window.addEventListener('popstate', handler);
 
+    return () => {
+      window.removeEventListener('popstate', handler);
+    };
+  }, []);
+
+  const navigate = (to) => {
+    window.history.pushState({}, '', to);
+    setCurrentPath(to);
+  };
+
+  const value = {currentPath, navigate};
   return (
-    <NavigationContext.Provider value={value}>
+    <NavigationContext.Provider value={value}>      
       {children}
     </NavigationContext.Provider>
   );
