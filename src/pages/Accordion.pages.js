@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import Accordion from '../components/ui/Accordion/Accordion';
+import Accordion from '../components/ui/accordion/Accordion';
 
 function AccordionPage() {
   const items = [
