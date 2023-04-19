@@ -1,18 +1,26 @@
-function Table({ data, config }) {
-  const renderedRows = data.map((fruit) => (
-    <tr className='border-b' key={fruit.name}>
+import { Fragment } from 'react';
+
+function Table({ data, config, keyFn }) {
+  const renderedHead = config.map((column) => {
+    if (column.header) {
+      return <Fragment key={column.label}>{column.header()}</Fragment>;
+    }
+
+    return (
+      <th key={column.label} className='border-b-2'>
+        {column.label}
+      </th>
+    );
+  });
+
+  const renderedRows = data.map((rowData) => (
+    <tr className='border-b' key={keyFn(rowData)}>
       {config.map((el) => (
-        <td key={el.label} className='p-3'>
-          {el.render(fruit)}
+        <td className='p-3' key={el.label}>
+          {el.render(rowData)}
         </td>
       ))}
     </tr>
-  ));
-
-  const renderedHead = config.map((column) => (
-    <th key={column.label} className='border-b-2'>
-      {column.label}
-    </th>
   ));
 
   return (
