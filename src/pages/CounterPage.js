@@ -2,6 +2,13 @@ import { useReducer } from 'react';
 import Button from '../components/ui/buttons/Button';
 import Panel from '../components/ui/Panel';
 
+const TYPES_LIST = {
+  INCREMENT_COUNT: 'increnent',
+  DECREMENT_COUNT: 'decrement',
+  UPDATE_VALUETOADD: 'updateValueToAdd',
+  ADD_VALUETOADD_TO_COUNT: 'addValueToCount',
+};
+
 const reducer = (state, action) => {
   const { type, payload } = action;
 
@@ -20,7 +27,6 @@ const reducer = (state, action) => {
 };
 
 export default function CounterPage({ initialCount }) {
-
   const [state, dispatch] = useReducer(reducer, {
     count: initialCount,
     valueToAdd: 0,
@@ -30,24 +36,24 @@ export default function CounterPage({ initialCount }) {
 
   const increment = () => {
     dispatch({
-      type: 'increment',
+      type: TYPES_LIST.INCREMENT_COUNT,
     });
   };
 
   const decrement = () => {
     dispatch({
-      type: 'decrement',
+      type: TYPES_LIST.DECREMENT_COUNT,
     });
   };
 
   const handleChange = (e) => {
     const value = +e.target.value;
-    dispatch({ type: 'updateValueToAdd', payload: value });
+    dispatch({ type: TYPES_LIST.UPDATE_VALUETOADD, payload: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch({ type: 'addValueToCount', payload: valueToAdd });
+    dispatch({ type: TYPES_LIST.ADD_VALUETOADD_TO_COUNT, payload: valueToAdd });
   };
 
   return (
