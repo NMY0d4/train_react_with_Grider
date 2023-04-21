@@ -13,16 +13,16 @@ const reducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case 'increment':
+    case TYPES_LIST.INCREMENT_COUNT:
       return { ...state, count: state.count + 1 };
-    case 'decrement':
+    case TYPES_LIST.DECREMENT_COUNT:
       return { ...state, count: state.count - 1 };
-    case 'updateValueToAdd':
+    case TYPES_LIST.UPDATE_VALUETOADD:
       return { ...state, valueToAdd: payload };
-    case 'addValueToCount':
+    case TYPES_LIST.ADD_VALUETOADD_TO_COUNT:
       return { ...state, count: state.count + payload, valueToAdd: 0 };
     default:
-      return console.error('Something went wrong');
+      throw new Error(`Reducer: Something went wrong with ${type}`);
   }
 };
 
