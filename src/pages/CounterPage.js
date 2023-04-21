@@ -1,3 +1,4 @@
+import { produce } from 'immer';
 import { useReducer } from 'react';
 import Button from '../components/ui/buttons/Button';
 import Panel from '../components/ui/Panel';
@@ -5,29 +6,35 @@ import Panel from '../components/ui/Panel';
 const TYPES_LIST = {
   INCREMENT_COUNT: 'increnent',
   DECREMENT_COUNT: 'decrement',
-  UPDATE_VALUETOADD: 'updateValueToAdd',
+  SET_VALUETOADD: 'updateValueToAdd',
   ADD_VALUETOADD_TO_COUNT: 'addValueToCount',
 };
 
 const reducer = (state, action) => {
   const { type, payload } = action;
+  let { count, valueToAdd } = state;
 
   switch (type) {
     case TYPES_LIST.INCREMENT_COUNT:
-      return { ...state, count: state.count + 1 };
+      count = count + 1;
+      return;
     case TYPES_LIST.DECREMENT_COUNT:
-      return { ...state, count: state.count - 1 };
-    case TYPES_LIST.UPDATE_VALUETOADD:
-      return { ...state, valueToAdd: payload };
+      count = count - 1;
+      return;
+    case TYPES_LIST.SET_VALUETOADD:
+      valueToAdd = payload;
+      return;
     case TYPES_LIST.ADD_VALUETOADD_TO_COUNT:
-      return { ...state, count: state.count + payload, valueToAdd: 0 };
+      count = count + valueToAdd;
+      valueToAdd = 0;
+      return;
     default:
       throw new Error(`Reducer: Something went wrong with ${type}`);
   }
 };
 
 export default function CounterPage({ initialCount }) {
-  const [state, dispatch] = useReducer(reducer, {
+  const [state, dispatch] = useReducer(produce(reducer), {
     count: initialCount,
     valueToAdd: 0,
   });
@@ -48,12 +55,12 @@ export default function CounterPage({ initialCount }) {
 
   const handleChange = (e) => {
     const value = +e.target.value;
-    dispatch({ type: TYPES_LIST.UPDATE_VALUETOADD, payload: value });
+    dispatch({ type: TYPES_LIST.SET_VALUETOADD, payload: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch({ type: TYPES_LIST.ADD_VALUETOADD_TO_COUNT, payload: valueToAdd });
+    dispatch({ type: TYPES_LIST.ADD_VALUETOADD_TO_COUNT });
   };
 
   return (
