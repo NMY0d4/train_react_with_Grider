@@ -1,29 +1,53 @@
-import { useState } from 'react';
+import { useReducer } from 'react';
 import Button from '../components/ui/buttons/Button';
 import Panel from '../components/ui/Panel';
 
+const reducer = (state, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case 'increment':
+      return { ...state, count: state.count + 1 };
+    case 'decrement':
+      return { ...state, count: state.count - 1 };
+    case 'updateValueToAdd':
+      return { ...state, valueToAdd: payload };
+    case 'addValueToCount':
+      return { ...state, count: state.count + payload, valueToAdd: 0 };
+    default:
+      return console.error('Something went wrong');
+  }
+};
+
 export default function CounterPage({ initialCount }) {
-  const [count, setCount] = useState(initialCount);
-  const [valueToAdd, setValueToAdd] = useState(0);
+
+  const [state, dispatch] = useReducer(reducer, {
+    count: initialCount,
+    valueToAdd: 0,
+  });
+
+  const { count, valueToAdd } = state;
 
   const increment = () => {
-    setCount(count + 1);
+    dispatch({
+      type: 'increment',
+    });
   };
 
   const decrement = () => {
-    setCount(count - 1);
+    dispatch({
+      type: 'decrement',
+    });
   };
 
   const handleChange = (e) => {
     const value = +e.target.value;
-    setValueToAdd(value);
+    dispatch({ type: 'updateValueToAdd', payload: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    setCount(count + valueToAdd);
-    setValueToAdd(0);
+    dispatch({ type: 'addValueToCount', payload: valueToAdd });
   };
 
   return (
